@@ -5,7 +5,7 @@
 export const SITE_CONFIG = {
     name: "ShopBook",
     description: "Hiệu sách trực tuyến hàng đầu Việt Nam - Hàng ngàn đầu sách với giá tốt nhất",
-    url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    url: process.env.NEXT_PUBLIC_APP_URL ||,
     logo: "/logo.svg",
     currency: "VND",
 } as const;
