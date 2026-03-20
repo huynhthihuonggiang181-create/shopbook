@@ -9,10 +9,10 @@ import { FlashSaleCard } from "@/components/book/flash-sale-card";
 import { FlashSaleCountdown } from "@/components/ui/flash-sale-countdown";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-// 1. Hàm lấy Flash Sale
 async function getActiveFlashSale() {
   const base = process.env.NEXT_PUBLIC_APP_URL;
-  if (!base || base === "") return null; // Chặn lỗi Invalid URL
+  // Nếu không có base, trả về null luôn để không bị lỗi URL rỗng
+  if (!base || base === "") return null; 
   try {
     const res = await fetch(`${base}/api/flash-sales/active`, { cache: "no-store" });
     const json = await res.json();
@@ -20,10 +20,9 @@ async function getActiveFlashSale() {
   } catch (e) { return null; }
 }
 
-// 2. Hàm lấy Danh mục
 async function getCategories() {
   const base = process.env.NEXT_PUBLIC_APP_URL;
-  if (!base || base === "") return []; // Chặn lỗi Invalid URL
+  if (!base || base === "") return []; 
   try {
     const res = await fetch(`${base}/api/categories`, { cache: "no-store" });
     const json = await res.json();
@@ -31,10 +30,9 @@ async function getCategories() {
   } catch (e) { return []; }
 }
 
-// 3. Hàm lấy Sách
 async function getBooks() {
   const base = process.env.NEXT_PUBLIC_APP_URL;
-  if (!base || base === "") return []; // Chặn lỗi Invalid URL
+  if (!base || base === "") return []; 
   try {
     const res = await fetch(`${base}/api/books?limit=10`, { cache: "no-store" });
     const json = await res.json();
