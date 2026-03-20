@@ -1,7 +1,7 @@
 // =============================================================
 // Sách Nhà Giang - Homepage (Real DB + BANNER.png Hero)
 // =============================================================
-
+export const dynamic = 'force-dynamic';
 import Link from "next/link";
 import { Truck, Shield, RotateCcw, Headphones, ArrowRight, Star, Zap } from "lucide-react";
 import { BookCard } from "@/components/book/book-card";
@@ -10,7 +10,7 @@ import { FlashSaleCountdown } from "@/components/ui/flash-sale-countdown";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 async function getActiveFlashSale() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||;
+    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
     try {
         const res = await fetch(`${base}/api/flash-sales/active`, { cache: "no-store" });
         const json = await res.json();
@@ -19,7 +19,7 @@ async function getActiveFlashSale() {
 }
 
 async function getCategories() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||;
+    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
     try {
         const res = await fetch(`${base}/api/categories`, { cache: "no-store" });
         const json = await res.json();
@@ -28,7 +28,7 @@ async function getCategories() {
 }
 
 async function getBooks() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||;
+    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
     try {
         const res = await fetch(`${base}/api/books?limit=10`, { cache: "no-store" });
         const json = await res.json();
