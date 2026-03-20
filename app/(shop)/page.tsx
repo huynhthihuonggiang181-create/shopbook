@@ -10,39 +10,42 @@ import { FlashSaleCountdown } from "@/components/ui/flash-sale-countdown";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 async function getActiveFlashSale() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
-    try {
-        const res = await fetch(`${base}/api/flash-sales/active`, { cache: "no-store" });
-        const json = await res.json();
-        return json.success ? json.data : null;
-    } catch { return null; }
+  const base = process.env.NEXT_PUBLIC_APP_URL;
+  if (!base) return null;
+  try {
+    const res = await fetch(`${base}/api/flash-sales/active`, { cache: "no-store" });
+    const json = await res.json();
+    return json.success ? json.data : null;
+  } catch (e) { return null; }
 }
 
 async function getCategories() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
-    try {
-        const res = await fetch(`${base}/api/categories`, { cache: "no-store" });
-        const json = await res.json();
-        return json.success ? json.data : [];
-    } catch { return []; }
+  const base = process.env.NEXT_PUBLIC_APP_URL;
+  if (!base) return [];
+  try {
+    const res = await fetch(`${base}/api/categories`, { cache: "no-store" });
+    const json = await res.json();
+    return json.success ? json.data : [];
+  } catch (e) { return []; }
 }
 
 async function getBooks() {
-    const base = process.env.NEXT_PUBLIC_APP_URL ||"";
-    try {
-        const res = await fetch(`${base}/api/books?limit=10`, { cache: "no-store" });
-        const json = await res.json();
-        return json.success ? json.data : [];
-    } catch { return []; }
+  const base = process.env.NEXT_PUBLIC_APP_URL;
+  if (!base) return [];
+  try {
+    const res = await fetch(`${base}/api/books?limit=10`, { cache: "no-store" });
+    const json = await res.json();
+    return json.success ? json.data : [];
+  } catch (e) { return []; }
 }
 
 export default async function HomePage() {
-    const [activeSale, categories, books] = await Promise.all([
-        getActiveFlashSale(),
-        getCategories(),
-        getBooks(),
-    ]);
-
+  const [activeSale, categories, books] = await Promise.all([
+    getActiveFlashSale(),
+    getCategories(),
+    getBooks(),
+  ]);
+  // ... đoạn code return (giữ nguyên phần dưới của bạn)
     const features = [
         { icon: Truck, label: "Giao hàng miễn phí", desc: "Đơn từ 200k" },
         { icon: Shield, label: "Sách chính hãng", desc: "100% authentic" },
